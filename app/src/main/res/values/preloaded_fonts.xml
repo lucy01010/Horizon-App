@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/aclonica</item>
+        <item>@font/adamina</item>
+        <item>@font/akaya_telivigala</item>
+        <item>@font/archivo_black</item>
+        <item>@font/archivo_semibold_italic</item>
+        <item>@font/artifika</item>
+        <item>@font/barlow_light</item>
+        <item>@font/changa_bold</item>
+        <item>@font/lobster</item>
+        <item>@font/metamorphous</item>
+    </array>
+</resources>
