@@ -19,33 +19,34 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_width="137dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="152dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Log In to               "
+        android:text="Log In to"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="33sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="407dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="125dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="152dp"
         android:fontFamily="sans-serif-medium"
-        android:text="                  Horizon"
+        android:text="Horizon"
         android:textAlignment="center"
         android:textColor="@color/blue"
         android:textSize="33sp"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.701"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-24dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView3"
