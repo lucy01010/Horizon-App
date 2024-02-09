@@ -11,9 +11,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.horizonapp.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,54 +26,64 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.bott_nav);
+        getSupportActionBar().hide();
 
-        bottomNavigationView = findViewById(R.id.bottomNavView);
-        frameLayout = findViewById(R.id.frameLayout);
-
-           bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    int itemId = item.getItemId();
-
-                    if (itemId == R.id.navHome) {
-                        loadFragment(new HomeFragment(), true);
-                    } else if (itemId == R.id.navMap) {
-                        loadFragment(new MapFragment(), true);
-                    } else if (itemId == R.id.navSearch) {
-                        loadFragment(new SearchFragment(), true);
-                    } else if (itemId == R.id.navProfile) {
-                        loadFragment(new ProfileFragment(), true);
-                    }
-
-                    return true;
-                }
-            });
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager
+                ().findFragmentById(R.id.nav_host_fragment);
+        NavController navController = Objects.requireNonNull(navHostFragment).
+                getNavController();
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
+        BottomNavigationView bottomNav = findViewById(R.id.nvMain);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+        NavigationUI.setupWithNavController(bottomNav, navController);
 
-    private void loadFragment(Fragment fragment, boolean isAppInitialized) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        if (isAppInitialized) {
-            fragmentTransaction.replace(R.id.frameLayout, fragment);
-        } else {
-            fragmentTransaction.add(R.id.frameLayout, fragment);
-        }
-
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+//        bottomNavigationView = findViewById(R.id.bottomNavView);
+//        frameLayout = findViewById(R.id.frameLayout);
+//
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                int itemId = item.getItemId();
+//
+//                if (itemId == R.id.navHome) {
+//                    loadFragment(new HomeFragment(), true);
+//                } else if (itemId == R.id.navMap) {
+//                    loadFragment(new MapFragment(), true);
+//                } else if (itemId == R.id.navSearch) {
+//                    loadFragment(new SearchFragment(), true);
+//                } else if (itemId == R.id.navProfile) {
+//                    loadFragment(new ProfileFragment(), true);
+//                }
+//                return true;
+//            }
+//        });
+//
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
+//
+//    private void loadFragment(Fragment fragment, boolean isAppInitialized) {
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//        if (isAppInitialized) {
+//            fragmentTransaction.replace(R.id.frameLayout, fragment);
+//        } else {
+//            fragmentTransaction.add(R.id.frameLayout, fragment);
+//        }
+//
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
     }
 }

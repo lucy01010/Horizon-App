@@ -44,19 +44,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemRippleColor="@android:color/transparent"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        tools:ignore="MissingConstraints" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
