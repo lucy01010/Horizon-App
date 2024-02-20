@@ -28,7 +28,7 @@
         android:clipToPadding="false"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
-        app:contentInsetStart="0dp"
+         app:contentInsetStart="0dp"
         app:fabAlignmentMode="center"
         app:fabAnchorMode="embed"
         app:fabAnimationMode="scale"
@@ -45,10 +45,12 @@
             android:layout_gravity="start"
             android:animateLayoutChanges="true"
             android:hapticFeedbackEnabled="true"
+            app:itemTextColor="@color/white"
+            app:itemIconTint="@color/white"
             android:background="@color/blue"
             android:visibility="visible"
             app:itemIconSize="20dp"
-            app:labelVisibilityMode="unlabeled"
+            app:labelVisibilityMode="selected"
             app:menu="@menu/bottom_nav_menu" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -60,12 +62,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"
         app:itemRippleColor="@android:color/transparent"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        tools:ignore="MissingConstraints" />
-
+        />
 
 
 

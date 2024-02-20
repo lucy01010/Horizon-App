@@ -67,20 +67,20 @@ public class RegistrationActivity extends AppCompatActivity {
                     mPassword.setError("Password must be at least 6 characters");
                     return;
                 }
-            progressBar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
 
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(RegistrationActivity.this,"Account created",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class ));
-                    }else{
-                        Toast.makeText(RegistrationActivity.this,"Error! " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(RegistrationActivity.this,"Account created",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class ));
+                        }else{
+                            Toast.makeText(RegistrationActivity.this,"Error! " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
 
+                        }
                     }
-                }
-            });
+                });
             }
         });
 
@@ -95,4 +95,3 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 }
-

@@ -2,28 +2,30 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bottom_navigation">
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/navHome">
     <fragment
         android:id="@+id/navHome"
         android:name="com.example.horizonapp.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navMap"
-        android:name="com.example.horizonapp.ui.gallery.DailySuggestionsFragment"
+        android:name="com.example.horizonapp.MapFragment"
         android:label="Map"
         tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/navSearch"
-        android:name="com.example.horizonapp.ui.slideshow.FavoriteFragment"
+        android:name="com.example.horizonapp.SearchFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search"
-        tools:ignore="DuplicateIds" />
+        />
     <fragment
         android:id="@+id/navProfile"
-        android:name="com.example.horizonapp.ui.slideshow.FavoriteFragment"
+        android:name="com.example.horizonapp.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+
 </navigation>
