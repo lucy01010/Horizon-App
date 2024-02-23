@@ -18,33 +18,17 @@
 
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="137dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="152dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Log In to"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="33sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
         android:id="@+id/textView6"
-        android:layout_width="125dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="152dp"
+        android:layout_width="380dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Horizon"
+        android:text="Log In To Horizon"
         android:textAlignment="center"
         android:textColor="@color/blue"
         android:textSize="33sp"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
         tools:ignore="MissingConstraints" />
 
@@ -52,13 +36,12 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/log_in"
         android:textAlignment="center"
         android:textColor="@color/blue"
         android:textSize="19sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 

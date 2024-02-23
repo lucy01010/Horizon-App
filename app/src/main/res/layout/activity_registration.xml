@@ -15,26 +15,13 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-361dp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="Sign up to               "
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="33sp"
-        app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-109dp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="                   Horizon"
+        android:text="Sign Up to Horizon"
         android:textAlignment="center"
         android:textColor="@color/blue"
         android:textSize="33sp"
@@ -53,7 +40,7 @@
         android:textColor="@color/blue"
         android:textSize="19sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="130dp" />
 
