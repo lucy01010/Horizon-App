@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,41 +12,103 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.horizonapp.R;
-import com.example.horizonapp.adapters.HomeHorAdapter;
-import com.example.horizonapp.models.HomeHorModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.horizonapp.adapters.PopularAdapter;
+import com.example.horizonapp.adapters.TopPlacesAdapter;
+import com.example.horizonapp.domain.PopularDomain;
+import com.example.horizonapp.domain.TopPlaceDomain;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView homeHorizontalRec;
-    List<HomeHorModel> homeHorModelList;
-    HomeHorAdapter homeHorAdapter;
-    private BottomNavigationView bottomNavigationView;
-    private FrameLayout frameLayout;
+    private TextView category1;
+    private TextView category2;
+    private TextView category3;
+    private TextView category4;
+
+    private RecyclerView placesRecyclerView;
+    private RecyclerView topPlacesRecyclerView;
+    private TopPlacesAdapter topPlacesAdapter;
+    private PopularAdapter popularAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home,container,false);
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        homeHorizontalRec = root.findViewById(R.id.home_hor_rec);
+        category1 = root.findViewById(R.id.category1);
+        category2 = root.findViewById(R.id.category2);
+        category3 = root.findViewById(R.id.category3);
+        category4 = root.findViewById(R.id.category4);
 
-        homeHorModelList = new ArrayList<>();
-        homeHorModelList.add(new HomeHorModel(R.drawable.museum,"Museum"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.fortress,"Fortress"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.church,"Church"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.monastery,"Monastery"));
+        // Set up the Popular Places RecyclerView
+        placesRecyclerView = root.findViewById(R.id.placesRecyclerView);
+        ArrayList<PopularDomain.Domain> listOfPlaces = getPlaces();
+        popularAdapter = new PopularAdapter(listOfPlaces);
 
-        homeHorAdapter = new HomeHorAdapter(getActivity(),homeHorModelList);
-        homeHorizontalRec.setAdapter(homeHorAdapter);
-        homeHorizontalRec.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
-        homeHorizontalRec.setHasFixedSize(true);
-        homeHorizontalRec.setNestedScrollingEnabled(false);
+        LinearLayoutManager popularLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        placesRecyclerView.setLayoutManager(popularLayoutManager);
+        placesRecyclerView.setAdapter(popularAdapter);
+
+        //-------------------------------------------------
+
+        // Set up the Top Places RecyclerView
+        topPlacesRecyclerView = root.findViewById(R.id.topPlacesRecyclerView);
+        ArrayList<TopPlaceDomain> listOfTopPlaces = getTopPlaces();
+        topPlacesAdapter = new TopPlacesAdapter(listOfTopPlaces);
+
+        LinearLayoutManager topPlacesLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+        topPlacesRecyclerView.setLayoutManager(topPlacesLayoutManager);
+        topPlacesRecyclerView.setAdapter(topPlacesAdapter);
+
+        //-------------------------------------------------
+
+        category1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle category 1 click
+            }
+        });
+
+        category2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle category 2 click
+            }
+        });
+
+        category3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle category 3 click
+            }
+        });
+
+        category4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle category 4 click
+            }
+        });
+
         return root;
-
-
     }
 
+    private ArrayList<PopularDomain.Domain> getPlaces() {
+        ArrayList<PopularDomain.Domain> places = new ArrayList<>();
+        // Add places to the list
+        places.add(new PopularDomain.Domain("History Museum", "historymuseum", "Yerevan"));
+        places.add(new PopularDomain.Domain("Military Museum", "military_museum", "Yerevan"));
+        places.add(new PopularDomain.Domain("Cascade", "cascade", "Yerevan"));
+        places.add(new PopularDomain.Domain("Garni Temple", "garni", "Kotayk Province"));
+        return places;
+    }
+
+    private ArrayList<TopPlaceDomain> getTopPlaces() {
+        ArrayList<TopPlaceDomain> topPlaces = new ArrayList<>();
+        topPlaces.add(new TopPlaceDomain("Cascade", "cascade", "Yerevan"));
+        topPlaces.add(new TopPlaceDomain("Military Museum", "military_museum", "Yerevan"));
+        topPlaces.add(new TopPlaceDomain("Cascade", "cascade", "Yerevan"));
+        topPlaces.add(new TopPlaceDomain("Military Museum", "military_museum", "Yerevan"));
+        return topPlaces;
+    }
 }
