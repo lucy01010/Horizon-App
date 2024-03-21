@@ -1,10 +1,12 @@
 package com.example.horizonapp.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,9 @@ import com.example.horizonapp.adapters.PopularAdapter;
 import com.example.horizonapp.adapters.TopPlacesAdapter;
 import com.example.horizonapp.domain.PopularDomain;
 import com.example.horizonapp.domain.TopPlaceDomain;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -30,11 +35,14 @@ public class HomeFragment extends Fragment {
     private RecyclerView topPlacesRecyclerView;
     private TopPlacesAdapter topPlacesAdapter;
     private PopularAdapter popularAdapter;
+    private FirebaseFirestore db;
+    ArrayList<PopularDomain.Domain> listOfPlaces = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
+        db = FirebaseFirestore.getInstance();
+        getPlaces();
         category1 = root.findViewById(R.id.category1);
         category2 = root.findViewById(R.id.category2);
         category3 = root.findViewById(R.id.category3);
@@ -42,7 +50,7 @@ public class HomeFragment extends Fragment {
 
         // Set up the Popular Places RecyclerView
         placesRecyclerView = root.findViewById(R.id.placesRecyclerView);
-        ArrayList<PopularDomain.Domain> listOfPlaces = getPlaces();
+
         popularAdapter = new PopularAdapter(listOfPlaces);
 
         LinearLayoutManager popularLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -93,15 +101,38 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    private ArrayList<PopularDomain.Domain> getPlaces() {
-        ArrayList<PopularDomain.Domain> places = new ArrayList<>();
-        // Add places to the list
-        places.add(new PopularDomain.Domain("History Museum", "historymuseum", "Yerevan"));
-        places.add(new PopularDomain.Domain("Military Museum", "military_museum", "Yerevan"));
-        places.add(new PopularDomain.Domain("Cascade", "cascade", "Yerevan"));
-        places.add(new PopularDomain.Domain("Garni Temple", "garni", "Kotayk Province"));
-        return places;
+    private void getPlaces() {
+        // Initialize an empty ArrayList to store places
+
+        // Get the Firestore collection reference
+        db.collection("products")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null) {
+                            // Iterate through each document in the collection
+                            for (QueryDocumentSnapshot document : querySnapshot) {
+                                
+                                Log.i("TAG", "Document data: " + document.getData());
+                                // Parse the document data and add it to the ArrayList
+                                String name = document.getString("name");
+                                String location = document.getString("description");
+                                listOfPlaces.add(new PopularDomain.Domain(name, "https://www.google.com/imgres?imgurl=https%3A%2F%2Ffacilitiesbyadf.com%2Fwp-content%2Fuploads%2F2022%2F03%2Fadf-2022-full-colour.png&tbnid=OMh5aCDiNNNUkM&vet=12ahUKEwj5wY3mj4CFAxVn0bsIHdlQB6UQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Ffacilitiesbyadf.com%2F&docid=UclKdEGa5AS_IM&w=2362&h=1123&q=adf&ved=2ahUKEwj5wY3mj4CFAxVn0bsIHdlQB6UQMygAegQIARBT", location));
+                            }
+                            // Notify the adapter if needed
+                            popularAdapter.notifyDataSetChanged();
+                        } else {
+                            Log.w("TAG", "Error getting documents: query snapshot is null");
+                            Toast.makeText(requireContext(), "Error getting data from Firestore", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.w("TAG", "Error getting documents.", task.getException());
+                        Toast.makeText(requireContext(), "Error getting data from Firestore", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
+
 
     private ArrayList<TopPlaceDomain> getTopPlaces() {
         ArrayList<TopPlaceDomain> topPlaces = new ArrayList<>();

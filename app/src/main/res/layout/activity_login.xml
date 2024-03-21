@@ -80,7 +80,6 @@
         android:layout_width="282dp"
         android:layout_height="61dp"
         android:background="@drawable/btn_bg_design"
-        android:onClick="mainActivity"
         android:padding="14dp"
         android:text="@string/log_in"
         android:textAllCaps="false"

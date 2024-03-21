@@ -1,5 +1,6 @@
 package com.example.horizonapp;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -29,6 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,12 +47,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-
+        FloatingActionButton addBtn = view.findViewById(R.id.fab_add_marker);
         mapSearchView = view.findViewById(R.id.mapSearch);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext());
         getLastLocation();
 
+        addBtn.setOnClickListener(v->{
+            Intent intent = new Intent(requireActivity(), AddActivity.class);
+            startActivity(intent);
+        });
         mapSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -112,16 +118,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         myMap = googleMap;
         LatLng myloc = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 
-        float hue = 210.0f;
-        googleMap.addMarker(new MarkerOptions().position(myloc).title("My Location").icon(BitmapDescriptorFactory.defaultMarker(hue)));
+        googleMap.addMarker(new MarkerOptions().position(myloc).title("My Location").icon(BitmapDescriptorFactory.defaultMarker()));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myloc, 12));
-
-        // Add additional markers
-//        LatLng historyMuseum = new LatLng(40.1743, 44.5035);
-//        googleMap.addMarker(new MarkerOptions().position(historyMuseum).title("History Museum"));
-//
-//        LatLng hovhannesTumanyanMuseum = new LatLng(40.1878, 44.5099);
-//        googleMap.addMarker(new MarkerOptions().position(hovhannesTumanyanMuseum).title("Hovhannes Tumanyan Museum"));
 
 
 

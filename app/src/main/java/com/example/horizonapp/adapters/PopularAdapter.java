@@ -37,7 +37,6 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PopularDomain.Domain currentItem = items.get(position);
 
-        // Set data to views
         holder.titleTxt.setText(currentItem.getDomainTitle());
         holder.locTxt.setText(currentItem.getDomainLocation());
 
