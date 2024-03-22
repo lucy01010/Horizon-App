@@ -23,8 +23,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
+
+    private static final String TAG = "HomeFragment";
 
     private TextView category1;
     private TextView category2;
@@ -44,9 +48,7 @@ public class HomeFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         getPlaces();
         category1 = root.findViewById(R.id.category1);
-        category2 = root.findViewById(R.id.category2);
-        category3 = root.findViewById(R.id.category3);
-        category4 = root.findViewById(R.id.category4);
+
 
         // Set up the Popular Places RecyclerView
         placesRecyclerView = root.findViewById(R.id.placesRecyclerView);
@@ -57,6 +59,7 @@ public class HomeFragment extends Fragment {
         placesRecyclerView.setLayoutManager(popularLayoutManager);
         placesRecyclerView.setAdapter(popularAdapter);
 
+        //-------------------------------------------------
         //-------------------------------------------------
 
         // Set up the Top Places RecyclerView
@@ -77,32 +80,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        category2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle category 2 click
-            }
-        });
 
-        category3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle category 3 click
-            }
-        });
 
-        category4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle category 4 click
-            }
-        });
 
         return root;
     }
 
     private void getPlaces() {
-        // Initialize an empty ArrayList to store places
+        // Clear the list before fetching new data
+        listOfPlaces.clear();
 
         // Get the Firestore collection reference
         db.collection("products")
@@ -113,26 +99,26 @@ public class HomeFragment extends Fragment {
                         if (querySnapshot != null) {
                             // Iterate through each document in the collection
                             for (QueryDocumentSnapshot document : querySnapshot) {
-                                
-                                Log.i("TAG", "Document data: " + document.getData());
+
+                                Log.i(TAG, "Document data: " + document.getData());
                                 // Parse the document data and add it to the ArrayList
                                 String name = document.getString("name");
                                 String location = document.getString("description");
-                                listOfPlaces.add(new PopularDomain.Domain(name, "https://www.google.com/imgres?imgurl=https%3A%2F%2Ffacilitiesbyadf.com%2Fwp-content%2Fuploads%2F2022%2F03%2Fadf-2022-full-colour.png&tbnid=OMh5aCDiNNNUkM&vet=12ahUKEwj5wY3mj4CFAxVn0bsIHdlQB6UQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Ffacilitiesbyadf.com%2F&docid=UclKdEGa5AS_IM&w=2362&h=1123&q=adf&ved=2ahUKEwj5wY3mj4CFAxVn0bsIHdlQB6UQMygAegQIARBT", location));
+                                String picUrl = document.getString("imageAlpha");
+                                listOfPlaces.add(new PopularDomain.Domain(name, picUrl, location));
                             }
                             // Notify the adapter if needed
                             popularAdapter.notifyDataSetChanged();
                         } else {
-                            Log.w("TAG", "Error getting documents: query snapshot is null");
+                            Log.w(TAG, "Error getting documents: query snapshot is null");
                             Toast.makeText(requireContext(), "Error getting data from Firestore", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Log.w("TAG", "Error getting documents.", task.getException());
+                        Log.w(TAG, "Error getting documents.", task.getException());
                         Toast.makeText(requireContext(), "Error getting data from Firestore", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
-
 
     private ArrayList<TopPlaceDomain> getTopPlaces() {
         ArrayList<TopPlaceDomain> topPlaces = new ArrayList<>();
@@ -141,5 +127,21 @@ public class HomeFragment extends Fragment {
         topPlaces.add(new TopPlaceDomain("Cascade", "cascade", "Yerevan"));
         topPlaces.add(new TopPlaceDomain("Military Museum", "military_museum", "Yerevan"));
         return topPlaces;
+    }
+
+    private void saveProductToFirestore(String name, String description, String imageAlpha) {
+        // Create a new document with a generated ID
+        db.collection("products")
+                .add(getProductMap(name, description, imageAlpha))
+                .addOnSuccessListener(documentReference -> Log.d(TAG, "Product added with ID: " + documentReference.getId()))
+                .addOnFailureListener(e -> Log.w(TAG, "Error adding product", e));
+    }
+
+    private Map<String, Object> getProductMap(String name, String location, String imageAlpha) {
+        Map<String, Object> product = new HashMap<>();
+        product.put("name", name);
+        product.put("location", location);
+        product.put("imageAlpha", imageAlpha);
+        return product;
     }
 }

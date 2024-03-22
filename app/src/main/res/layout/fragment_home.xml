@@ -22,11 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="65dp"
         android:fontFamily="@font/archivo_black"
         android:text="Welcome to Armenia"
         android:textColor="@color/black"
-        android:textSize="23dp"
+        android:textSize="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +38,7 @@
         android:layout_marginTop="2dp"
         android:fontFamily="@font/archivo_black"
         android:text="Let’s Explore Together"
-        android:textSize="20dp"
+        android:textSize="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -46,61 +46,20 @@
         android:id="@+id/category1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
-        android:text="All"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="65dp"
+        android:text="Places added by users"
+        android:fontFamily="@font/archivo_black"
         android:textSize="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/darkBlue"
         android:background="@drawable/category_background"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <TextView
-        android:id="@+id/category2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/category_background"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="Popular"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/category1"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <TextView
-        android:id="@+id/category3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="56dp"
-        android:text="Nearby"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:background="@drawable/category_background"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintStart_toEndOf="@+id/category2"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <TextView
-        android:id="@+id/category4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/category_background"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="Recommended"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@id/category3"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/placesRecyclerView"
@@ -121,10 +80,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:fontFamily="@font/archivo_black"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Top Places"
-        android:textColor="@color/black"
-        android:textSize="23dp"
+        android:textColor="@color/darkBlue"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/placesRecyclerView" />
 

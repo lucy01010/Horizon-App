@@ -38,12 +38,12 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         PopularDomain.Domain currentItem = items.get(position);
 
         holder.titleTxt.setText(currentItem.getDomainTitle());
-        holder.locTxt.setText(currentItem.getDomainLocation());
+        holder.locTxt.setText(currentItem.getDomainLocation()); // Set location text
 
         int drawableResourceId = context.getResources().getIdentifier(currentItem.getDomainPicUrl(), "drawable", context.getPackageName());
 
         Glide.with(context)
-                .load(drawableResourceId)
+                .load(currentItem.getDomainPicUrl())
                 .transform(new GranularRoundedCorners(30, 30, 0, 0))
                 .into(holder.pic);
     }
