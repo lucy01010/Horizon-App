@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,14 +17,24 @@ import com.example.horizonapp.R;
 import com.example.horizonapp.domain.TopPlaceDomain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.ViewHolder> {
 
     private ArrayList<TopPlaceDomain> items;
     private Context context;
+    private OnItemClickListener mListener;
 
-    public TopPlacesAdapter(ArrayList<TopPlaceDomain> items) {
+    public TopPlacesAdapter(FragmentActivity activity, List<TopPlaceDomain> topPlacesList) {
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(TopPlaceDomain item);
+    }
+
+    public TopPlacesAdapter(ArrayList<TopPlaceDomain> items, OnItemClickListener listener) {
         this.items = items;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -48,6 +59,14 @@ public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.View
                 .load(drawableResourceId)
                 .transform(new GranularRoundedCorners(30, 30, 0, 0))
                 .into(holder.pic);
+
+        // Set OnClickListener for the item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onItemClick(currentItem);
+            }
+        });
     }
 
     @Override

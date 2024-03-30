@@ -1,5 +1,6 @@
 package com.example.horizonapp.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.horizonapp.R;
+import com.example.horizonapp.activities.DetailActivity;
 import com.example.horizonapp.adapters.PopularAdapter;
 import com.example.horizonapp.adapters.TopPlacesAdapter;
 import com.example.horizonapp.domain.PopularDomain;
@@ -23,10 +25,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements TopPlacesAdapter.OnItemClickListener {
 
     private static final String TAG = "HomeFragment";
 
@@ -49,39 +49,20 @@ public class HomeFragment extends Fragment {
         getPlaces();
         category1 = root.findViewById(R.id.category1);
 
-
         // Set up the Popular Places RecyclerView
         placesRecyclerView = root.findViewById(R.id.placesRecyclerView);
-
         popularAdapter = new PopularAdapter(listOfPlaces);
-
         LinearLayoutManager popularLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         placesRecyclerView.setLayoutManager(popularLayoutManager);
         placesRecyclerView.setAdapter(popularAdapter);
 
-        //-------------------------------------------------
-        //-------------------------------------------------
-
         // Set up the Top Places RecyclerView
         topPlacesRecyclerView = root.findViewById(R.id.topPlacesRecyclerView);
         ArrayList<TopPlaceDomain> listOfTopPlaces = getTopPlaces();
-        topPlacesAdapter = new TopPlacesAdapter(listOfTopPlaces);
-
+        topPlacesAdapter = new TopPlacesAdapter(listOfTopPlaces, this);
         LinearLayoutManager topPlacesLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         topPlacesRecyclerView.setLayoutManager(topPlacesLayoutManager);
         topPlacesRecyclerView.setAdapter(topPlacesAdapter);
-
-        //-------------------------------------------------
-
-        category1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle category 1 click
-            }
-        });
-
-
-
 
         return root;
     }
@@ -99,7 +80,6 @@ public class HomeFragment extends Fragment {
                         if (querySnapshot != null) {
                             // Iterate through each document in the collection
                             for (QueryDocumentSnapshot document : querySnapshot) {
-
                                 Log.i(TAG, "Document data: " + document.getData());
                                 // Parse the document data and add it to the ArrayList
                                 String name = document.getString("name");
@@ -129,19 +109,10 @@ public class HomeFragment extends Fragment {
         return topPlaces;
     }
 
-    private void saveProductToFirestore(String name, String description, String imageAlpha) {
-        // Create a new document with a generated ID
-        db.collection("products")
-                .add(getProductMap(name, description, imageAlpha))
-                .addOnSuccessListener(documentReference -> Log.d(TAG, "Product added with ID: " + documentReference.getId()))
-                .addOnFailureListener(e -> Log.w(TAG, "Error adding product", e));
-    }
-
-    private Map<String, Object> getProductMap(String name, String location, String imageAlpha) {
-        Map<String, Object> product = new HashMap<>();
-        product.put("name", name);
-        product.put("location", location);
-        product.put("imageAlpha", imageAlpha);
-        return product;
+    @Override
+    public void onItemClick(TopPlaceDomain item) {
+        Intent intent = new Intent(requireContext(), DetailActivity.class);
+        intent.putExtra("top_place_item", item);
+        startActivity(intent);
     }
 }

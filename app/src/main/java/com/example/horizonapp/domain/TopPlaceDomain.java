@@ -1,6 +1,8 @@
 package com.example.horizonapp.domain;
 
-public class TopPlaceDomain {
+import java.io.Serializable;
+
+public class TopPlaceDomain implements Serializable {
 
     private String title;
     private String picUrl;
