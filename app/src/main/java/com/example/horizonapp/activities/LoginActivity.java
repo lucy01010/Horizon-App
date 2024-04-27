@@ -57,8 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             Log.e("Login: ", "Sign In With Email Failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                passwordTv.setError("email_or_password is incorrect");
-                                emailTv.setError("email_or_password_is_incorrect");
+                                passwordTv.setError("email or password is incorrect");
+                                emailTv.setError("email or password is incorrect");
                             } else {
 
                             }

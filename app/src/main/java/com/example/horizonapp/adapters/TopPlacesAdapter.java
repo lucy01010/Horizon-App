@@ -37,6 +37,11 @@ public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.View
         this.mListener = listener;
     }
 
+    public TopPlacesAdapter(Context context, List<TopPlaceDomain> topPlacesList) {
+        this.context = context;
+        this.items = new ArrayList<>(topPlacesList);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -67,6 +72,12 @@ public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.View
                 mListener.onItemClick(currentItem);
             }
         });
+    }
+
+    public TopPlacesAdapter(Context context, List<TopPlaceDomain> topPlacesList, OnItemClickListener listener) {
+        this.context = context;
+        this.items = new ArrayList<>(topPlacesList);
+        this.mListener = listener;
     }
 
     @Override

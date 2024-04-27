@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegistrationActivity extends AppCompatActivity {
-    EditText mName, mEmail, mPassword;
+    EditText mName, mEmail, mPassword, mConfirmPassword; // Declare confirm password EditText
     Button mRegisterbtn;
     TextView mLoginbtn;
     FirebaseAuth mAuth;
@@ -36,6 +36,7 @@ public class RegistrationActivity extends AppCompatActivity {
         mName = findViewById(R.id.name);
         mEmail = findViewById(R.id.email);
         mPassword = findViewById(R.id.password);
+        mConfirmPassword = findViewById(R.id.confirm_password); // Initialize confirm password EditText
         mRegisterbtn = findViewById(R.id.register_button);
         mLoginbtn = findViewById(R.id.login_button);
 
@@ -53,6 +54,7 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
+                String confirmPassword = mConfirmPassword.getText().toString().trim(); // Get confirm password
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Email is required");
@@ -67,6 +69,12 @@ public class RegistrationActivity extends AppCompatActivity {
                     mPassword.setError("Password must be at least 6 characters");
                     return;
                 }
+
+                if (!password.equals(confirmPassword)) { // Check if passwords match
+                    mConfirmPassword.setError("Passwords do not match");
+                    return;
+                }
+
                 progressBar.setVisibility(View.VISIBLE);
 
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -91,7 +99,6 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(RegistrationActivity.this, "Verification email sent.", Toast.LENGTH_SHORT).show();
-                            
                             startActivity(new Intent(RegistrationActivity.this, VerificationActivity.class));
                             finish();
                         } else {

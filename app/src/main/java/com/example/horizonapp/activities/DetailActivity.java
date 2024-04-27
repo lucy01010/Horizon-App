@@ -25,13 +25,12 @@ public class DetailActivity extends AppCompatActivity {
 
         getBundles();
 
-        // Add click listener to favorite ImageView
+
+
         binding.imageView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toggle the favorite state
                 isFavorite = !isFavorite;
-                // Change the favorite icon based on the state
                 if (isFavorite) {
                     binding.imageView5.setImageResource(R.drawable.baseline_favorite_24_red);
                 } else {

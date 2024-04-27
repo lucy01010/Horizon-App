@@ -68,10 +68,8 @@ public class HomeFragment extends Fragment implements TopPlacesAdapter.OnItemCli
     }
 
     private void getPlaces() {
-        // Clear the list before fetching new data
         listOfPlaces.clear();
 
-        // Get the Firestore collection reference
         db.collection("products")
                 .get()
                 .addOnCompleteListener(task -> {
@@ -83,7 +81,7 @@ public class HomeFragment extends Fragment implements TopPlacesAdapter.OnItemCli
                                 Log.i(TAG, "Document data: " + document.getData());
                                 // Parse the document data and add it to the ArrayList
                                 String name = document.getString("name");
-                                String location = document.getString("description");
+                                String location = document.getString("category");
                                 String picUrl = document.getString("imageAlpha");
                                 listOfPlaces.add(new PopularDomain.Domain(name, picUrl, location));
                             }
@@ -115,4 +113,5 @@ public class HomeFragment extends Fragment implements TopPlacesAdapter.OnItemCli
         intent.putExtra("top_place_item", item);
         startActivity(intent);
     }
+    
 }

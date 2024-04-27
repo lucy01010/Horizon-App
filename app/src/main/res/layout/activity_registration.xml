@@ -27,9 +27,9 @@
         android:textSize="33sp"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501"
+        app:layout_constraintVertical_bias="0.438"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="-16dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -44,12 +44,43 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="130dp" />
 
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/blue"
+        android:hint="@string/enter_your_password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/blue"
+        android:hint="Confirm password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="MissingConstraints" />
+
     <EditText
 
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="224dp"
         android:backgroundTint="@color/blue"
         android:hint="@string/enter_your_Name"
         android:textColorHint="@color/blue"
@@ -59,13 +90,12 @@
         app:layout_constraintWidth_percent=".8"
         tools:ignore="MissingConstraints" />
 
-
     <EditText
 
         android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/blue"
         android:hint="@string/enter_your_email"
         android:textColorHint="@color/blue"
@@ -74,22 +104,6 @@
         app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_constraintWidth_percent=".8"
         tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:inputType="textPassword"
-        android:id="@+id/password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/blue"
-        android:hint="@string/enter_your_password"
-        android:textColorHint="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintWidth_percent=".8"
-        tools:ignore="MissingConstraints" />
-
 
     <Button
 
@@ -107,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.224"
+        app:layout_constraintVertical_bias="0.441"
         tools:ignore="MissingConstraints" />
 
     <TextView
