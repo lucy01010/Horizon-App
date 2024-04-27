@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.horizonapp.activities.AddMarkerActivity;
 import com.example.horizonapp.models.PostModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,18 +38,17 @@ public class AddFragment extends Fragment {
     private static final int PICK_IMAGE_REQUEST = 1;
     private TextView nameTv;
     private TextView descTv;
-    private TextView categoryTv;
+    private Button categoryTv;
     private TextView ratingTv;
     private ImageButton addBtn;
     private ImageView productPhotoImageView;
     private FirebaseFirestore db;
     private StorageReference storageRef;
+    private static final int REQUEST_CODE_LOCATION = 100; // Request code for location
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_add, container, false);
     }
 
@@ -72,6 +73,11 @@ public class AddFragment extends Fragment {
             // Start intent to pick an image from the gallery
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        });
+
+        categoryTv.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddMarkerActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_LOCATION);
         });
     }
 
@@ -100,58 +106,54 @@ public class AddFragment extends Fragment {
         StorageReference imageRef = storage.getReference().child(imagePath);
 
         // Upload the image to Firebase Storage
-        imageRef.putBytes(imageData)
-                .addOnSuccessListener(taskSnapshot -> {
-                    // Image uploaded successfully, get the download URL
-                    imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                        // URL of the uploaded image
-                        String imageUrl = uri.toString();
-                        Log.d(TAG, "Image uploaded. URL: " + imageUrl);
+        imageRef.putBytes(imageData).addOnSuccessListener(taskSnapshot -> {
+            // Image uploaded successfully, get the download URL
+            imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                // URL of the uploaded image
+                String imageUrl = uri.toString();
+                Log.d(TAG, "Image uploaded. URL: " + imageUrl);
 
-                        // Show a toast message indicating successful upload
-                        Toast.makeText(getActivity(), "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+                // Show a toast message indicating successful upload
+                Toast.makeText(getActivity(), "Image uploaded successfully", Toast.LENGTH_SHORT).show();
 
-                        // Save the data to Firestore with the image URL
-                        saveDataToFirestore(imageUrl);
-                    });
-                })
-                .addOnFailureListener(e -> {
-                    // Error occurred while uploading the image
-                    Log.e(TAG, "Error uploading image", e);
-                    Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
-                });
+                // Save the data to Firestore with the image URL
+                saveDataToFirestore(imageUrl);
+            });
+        }).addOnFailureListener(e -> {
+            // Error occurred while uploading the image
+            Log.e(TAG, "Error uploading image", e);
+            Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void saveDataToFirestore(String imageUrl) {
-        PostModel product = new PostModel(
-                nameTv.getText().toString(),
-                categoryTv.getText().toString(),
-                descTv.getText().toString(),
-                imageUrl,
-                Double.parseDouble(ratingTv.getText().toString())
-        );
+        PostModel product = new PostModel(nameTv.getText().toString(), categoryTv.getText().toString(), descTv.getText().toString(), imageUrl, Double.parseDouble(ratingTv.getText().toString()));
 
-        db.collection("products")
-                .add(product)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                        Toast.makeText(getActivity(), "Product added successfully!", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                        Toast.makeText(getActivity(), "Failed to add product", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        db.collection("products").add(product).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                Toast.makeText(getActivity(), "Product added successfully!", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "Error adding document", e);
+                Toast.makeText(getActivity(), "Failed to add product", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_LOCATION && resultCode == getActivity().RESULT_OK && data != null) {
+            String addressDetails = data.getStringExtra("LOCATION_ADDRESS");
+            if (addressDetails != null) {
+                categoryTv.setText(addressDetails);  // Set the TextView with the address details
+            }
+        }
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == getActivity().RESULT_OK && data != null) {
             Uri imageUri = data.getData();

@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="Location"
+                android:text="Location (Street, city, country)"
                 android:textStyle="bold"
                 android:textSize="17sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
@@ -135,7 +135,7 @@
                 android:background="@color/grey"
                 app:hintEnabled="false">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <Button
                     android:id="@+id/product_category"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
