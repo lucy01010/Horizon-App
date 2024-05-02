@@ -3,6 +3,7 @@ package com.example.horizonapp.activities;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,6 +11,7 @@ import android.util.Log;  // Import for logging
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.horizonapp.GeoPointsManager;
 import com.example.horizonapp.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -48,6 +50,9 @@ public class AddMarkerActivity extends AppCompatActivity implements OnMapReadyCa
 
             // Retrieve the address information
             new Thread(() -> {
+                GeoPointsManager geoPointsManager = new GeoPointsManager(getApplicationContext(), map);
+                geoPointsManager.addGeoPointToFirestore(latLng);
+
                 String addressDetails = getAddressFromLocation(latLng.latitude, latLng.longitude);
                 if (addressDetails != null) {
                     Log.d(TAG, "Selected location's address: " + addressDetails);

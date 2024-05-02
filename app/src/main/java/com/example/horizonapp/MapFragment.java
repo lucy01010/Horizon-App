@@ -169,8 +169,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         googleMap.addMarker(new MarkerOptions().position(smbataBerd).title("Smbataberd Fortress ").icon(customMarkerIcon3));
 
 
-
-
+        GeoPointsManager geoPointsManager = new GeoPointsManager(requireContext(), googleMap);
+        geoPointsManager.addMarkersForGeoPoints();
     }
 
     }
