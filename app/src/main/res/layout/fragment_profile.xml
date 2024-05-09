@@ -3,34 +3,123 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg2"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/userNameTextView"
+        android:id="@+id/username_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User Name"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:text="Username"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
 
     <TextView
-        android:id="@+id/userEmailTextView"
+        android:id="@+id/username_texttext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/textview_design"
+        android:layout_marginTop="15dp"
+        android:text="Username"
+        android:layout_below="@+id/username_text"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/email_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="user@example.com"
-        android:textSize="18sp"
-        android:layout_below="@id/userNameTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:text="Email"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/username_texttext"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/email_texttext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/textview_design"
+        android:text="nonamenousername@gmail.com"
+        android:layout_below="@+id/email_text"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/password_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:text="Password"
+        android:layout_below="@id/email_texttext"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:id="@+id/password_texttext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:inputType="textPassword"
+        android:background="@drawable/textview_design"
+        android:text="NoChocolate"
+        android:layout_below="@+id/password_text"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/description_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:text="Description"
+        android:layout_below="@id/password_texttext"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:id="@+id/description_textt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:maxLength="150"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/textview_design"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        android:layout_below="@+id/description_text"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Log Out"
-        android:layout_below="@id/userEmailTextView"
+        android:padding="15px"
+        android:textColor="@color/white"
+        android:background="@drawable/button_design"
+        android:layout_below="@id/description_textt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="45dp"/>
 
 </RelativeLayout>
