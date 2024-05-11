@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegistrationActivity extends AppCompatActivity {
     EditText mName, mEmail, mPassword, mConfirmPassword; // Declare confirm password EditText
@@ -81,7 +82,28 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            sendEmailVerification();
+                            // User created successfully
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                // Set the display name
+                                String displayName = mName.getText().toString().trim();
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(displayName).build();
+
+                                user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> profileTask) {
+                                        if (profileTask.isSuccessful()) {
+                                            sendEmailVerification();
+                                        } else {
+                                            Toast.makeText(RegistrationActivity.this, "Failed to update profile", Toast.LENGTH_SHORT).show();
+                                            progressBar.setVisibility(View.GONE);
+                                        }
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(RegistrationActivity.this, "User is not signed in", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
                         } else {
                             Toast.makeText(RegistrationActivity.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
@@ -93,20 +115,19 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void sendEmailVerification() {
-        mAuth.getCurrentUser().sendEmailVerification()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(RegistrationActivity.this, "Verification email sent.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegistrationActivity.this, VerificationActivity.class));
-                            finish();
-                        } else {
-                            Toast.makeText(RegistrationActivity.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    }
-                });
+        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(RegistrationActivity.this, "Verification email sent.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegistrationActivity.this, VerificationActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(RegistrationActivity.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     public void login(View view) {

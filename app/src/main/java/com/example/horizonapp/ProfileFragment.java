@@ -26,8 +26,8 @@ public class ProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
         // Initialize views
-        userNameTextView = view.findViewById(R.id.userNameTextView);
-        userEmailTextView = view.findViewById(R.id.userEmailTextView);
+        userNameTextView = view.findViewById(R.id.username_texttext);
+        userEmailTextView = view.findViewById(R.id.email_texttext);
         logoutButton = view.findViewById(R.id.logoutButton);
 
         // Set user information
@@ -37,7 +37,6 @@ public class ProfileFragment extends Fragment {
             userNameTextView.setText(userName);
             userEmailTextView.setText(userEmail);
         }
-
         // Logout button click listener
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
