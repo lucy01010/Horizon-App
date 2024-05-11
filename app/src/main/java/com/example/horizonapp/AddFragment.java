@@ -1,5 +1,6 @@
 package com.example.horizonapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -148,14 +149,14 @@ public class AddFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CODE_LOCATION && resultCode == getActivity().RESULT_OK && data != null) {
+        if (requestCode == REQUEST_CODE_LOCATION && resultCode == Activity.RESULT_OK && data != null) {
             String addressDetails = data.getStringExtra("LOCATION_ADDRESS");
             if (addressDetails != null) {
                 categoryTv.setText(addressDetails);  // Set the TextView with the address details
             }
         }
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == getActivity().RESULT_OK && data != null) {
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
             Uri imageUri = data.getData();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), imageUri);

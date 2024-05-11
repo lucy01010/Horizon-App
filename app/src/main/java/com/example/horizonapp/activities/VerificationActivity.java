@@ -11,7 +11,7 @@ import com.example.horizonapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class VerificationActivity extends AppCompatActivity {
+public final class VerificationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

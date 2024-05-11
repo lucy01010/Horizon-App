@@ -38,7 +38,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         PopularDomain.Domain currentItem = items.get(position);
 
         holder.titleTxt.setText(currentItem.getDomainTitle());
-        holder.locTxt.setText(currentItem.getDomainLocation()); // Set location text
+        holder.locTxt.setText(currentItem.getDomainLocation());
 
         int drawableResourceId = context.getResources().getIdentifier(currentItem.getDomainPicUrl(), "drawable", context.getPackageName());
 

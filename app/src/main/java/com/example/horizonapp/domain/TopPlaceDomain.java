@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class TopPlaceDomain implements Serializable {
 
-    private String title;
-    private String picUrl;
-    private String location;
+    private final String title;
+    private final String picUrl;
+    private final String location;
 
     public TopPlaceDomain(String title, String picUrl, String location) {
         this.title = title;

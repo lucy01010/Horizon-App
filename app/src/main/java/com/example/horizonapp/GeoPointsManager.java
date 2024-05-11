@@ -1,20 +1,19 @@
 package com.example.horizonapp;
 
 import android.content.Context;
-import android.location.Location;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.GeoPoint;
 
 import java.util.HashMap;
@@ -24,9 +23,9 @@ public class GeoPointsManager {
     private static final String TAG = "GeoPointsManager";
     private FirebaseFirestore db;
     private CollectionReference geoPointsCollection;
-    private Context context;
     private GoogleMap googleMap;
     private Map<String, Marker> markersMap;
+    private Context context;
 
     public GeoPointsManager(Context context, GoogleMap googleMap) {
         this.context = context;
@@ -58,11 +57,27 @@ public class GeoPointsManager {
                 if (geoPoint != null) {
                     LatLng latLng = new LatLng(geoPoint.getLatitude(), geoPoint.getLongitude());
                     String documentId = document.getId();
-                    Marker marker = googleMap.addMarker(new MarkerOptions().position(latLng).title(documentId));
+
+                    // Load your custom marker icon here and resize it
+                    BitmapDescriptor customMarkerIcon = getResizedBitmapDescriptor(R.drawable.pin, 0.0825f);
+
+                    Marker marker = googleMap.addMarker(new MarkerOptions()
+                            .position(latLng)
+                            .title(documentId)
+                            .icon(customMarkerIcon)); // Set the custom marker icon
                     markersMap.put(documentId, marker);
                 }
             }
         });
+    }
+
+    // Method to resize a BitmapDescriptor
+    private BitmapDescriptor getResizedBitmapDescriptor(int resourceId, float scale) {
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
+        int width = (int) (bitmap.getWidth() * scale);
+        int height = (int) (bitmap.getHeight() * scale);
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, width, height, false);
+        return BitmapDescriptorFactory.fromBitmap(resizedBitmap);
     }
 
     // Optionally, you can also add a method to remove markers from the map

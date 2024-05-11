@@ -37,7 +37,6 @@ public class HomeFragment extends Fragment implements TopPlacesAdapter.OnItemCli
 
     private RecyclerView placesRecyclerView;
     private RecyclerView topPlacesRecyclerView;
-    private TopPlacesAdapter topPlacesAdapter;
     private PopularAdapter popularAdapter;
     private FirebaseFirestore db;
     ArrayList<PopularDomain.Domain> listOfPlaces = new ArrayList<>();
@@ -59,7 +58,7 @@ public class HomeFragment extends Fragment implements TopPlacesAdapter.OnItemCli
         // Set up the Top Places RecyclerView
         topPlacesRecyclerView = root.findViewById(R.id.topPlacesRecyclerView);
         ArrayList<TopPlaceDomain> listOfTopPlaces = getTopPlaces();
-        topPlacesAdapter = new TopPlacesAdapter(listOfTopPlaces, this);
+        TopPlacesAdapter topPlacesAdapter = new TopPlacesAdapter(listOfTopPlaces, this);
         LinearLayoutManager topPlacesLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         topPlacesRecyclerView.setLayoutManager(topPlacesLayoutManager);
         topPlacesRecyclerView.setAdapter(topPlacesAdapter);

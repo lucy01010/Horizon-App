@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.example.horizonapp.R;
 
-public class WelcomeActivity extends AppCompatActivity {
+public final class WelcomeActivity extends AppCompatActivity {
     private Button button;
 
 

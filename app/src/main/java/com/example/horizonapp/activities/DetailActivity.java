@@ -10,7 +10,7 @@ import com.example.horizonapp.R;
 import com.example.horizonapp.databinding.ActivityDetailBinding;
 import com.example.horizonapp.domain.TopPlaceDomain;
 
-public class DetailActivity extends AppCompatActivity {
+public final class DetailActivity extends AppCompatActivity {
     private ActivityDetailBinding binding;
     private TopPlaceDomain object;
     private boolean isFavorite = false;
