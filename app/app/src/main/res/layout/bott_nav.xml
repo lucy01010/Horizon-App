@@ -1,0 +1,60 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:clipToPadding="true"
+        android:paddingBottom="70dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/bottom_navigation"
+        tools:layout="@layout/fragment_home" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:clipToPadding="false"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+         app:contentInsetStart="0dp"
+        app:fabAlignmentMode="center"
+        app:fabAnchorMode="embed"
+        app:fabAnimationMode="scale"
+        app:fabCradleMargin="0dp"
+        app:fabCradleRoundedCornerRadius="0dp"
+        app:fabCradleVerticalOffset="0dp"
+        app:removeEmbeddedFabElevation="true">
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nvMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:animateLayoutChanges="true"
+            android:hapticFeedbackEnabled="true"
+            app:itemTextColor="@color/white"
+            app:itemIconTint="@color/white"
+            android:background="@color/blue"
+            android:visibility="visible"
+            app:itemIconSize="20dp"
+            app:labelVisibilityMode="selected"
+            app:menu="@menu/bottom_nav_menu" />
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
