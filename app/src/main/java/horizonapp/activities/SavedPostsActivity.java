@@ -127,7 +127,7 @@ public class SavedPostsActivity extends AppCompatActivity implements TopPlacesAd
 
     @Override
     public void onItemClick(TopPlaceDomain item) {
-        Intent intent = new Intent(SavedPostsActivity.this, DetailActivity.class);
+        Intent intent = new Intent(SavedPostsActivity.this, com.example.horizonapp.activities.DetailActivity.class);
         intent.putExtra("top_place_item", item);
         startActivity(intent);
     }

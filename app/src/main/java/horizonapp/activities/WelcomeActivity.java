@@ -23,10 +23,10 @@ public final class WelcomeActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
-        startActivity(new Intent(WelcomeActivity.this, RegistrationActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, com.example.horizonapp.activities.RegistrationActivity.class));
     }
 
     public void login(View view) {
-        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, com.example.horizonapp.activities.LoginActivity.class));
     }
 }

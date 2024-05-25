@@ -28,7 +28,7 @@ public final class VerificationActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null && user.isEmailVerified()) {
             // Email is verified, navigate to Welcome Activity
-            startActivity(new Intent(VerificationActivity.this, WelcomeActivity.class));
+            startActivity(new Intent(VerificationActivity.this, com.example.horizonapp.activities.WelcomeActivity.class));
             finish(); // Close the current activity to prevent the user from going back
         }
     }

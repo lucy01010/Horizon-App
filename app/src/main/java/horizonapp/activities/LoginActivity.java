@@ -112,6 +112,6 @@ public final class LoginActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
-        startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
+        startActivity(new Intent(LoginActivity.this, com.example.horizonapp.activities.RegistrationActivity.class));
     }
 }

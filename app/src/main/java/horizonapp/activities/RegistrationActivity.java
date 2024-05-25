@@ -150,7 +150,7 @@ public final class RegistrationActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(RegistrationActivity.this, "Verification email sent.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegistrationActivity.this, VerificationActivity.class));
+                    startActivity(new Intent(RegistrationActivity.this, com.example.horizonapp.activities.VerificationActivity.class));
                     finish();
                 } else {
                     Toast.makeText(RegistrationActivity.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
@@ -161,6 +161,6 @@ public final class RegistrationActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+        startActivity(new Intent(RegistrationActivity.this, com.example.horizonapp.activities.LoginActivity.class));
     }
 }
