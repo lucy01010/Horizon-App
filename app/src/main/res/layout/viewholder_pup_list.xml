@@ -52,7 +52,7 @@
         android:layout_width="150dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:text="History Museum"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -61,19 +61,19 @@
 
     <TextView
         android:id="@+id/locTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="153dp"
+        android:layout_height="23dp"
         android:text="Yerevan"
         android:textColor="@color/darkBlue"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/titleTxt"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="19dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="17dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="5dp"
         android:src="@drawable/grey_location_on_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTxt"

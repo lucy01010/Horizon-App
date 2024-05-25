@@ -35,26 +35,15 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <FrameLayout
-                    android:id="@+id/favoriteFrameLayout"
-                    android:layout_width="46dp"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="336dp"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/white_background2"
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="51dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="344dp"
+                    android:layout_marginTop="28dp"
+                    android:src="@drawable/baseline_favorite_24"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="34dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:src="@drawable/baseline_favorite_24"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </FrameLayout>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <View
                     android:id="@+id/view"
@@ -116,12 +105,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="2dp"
-                    android:src="@drawable/star_rate_" />
+                    android:src="@drawable/baseline_favorite_24" />
 
                 <TextView
                     android:id="@+id/RatingTxt"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
                     android:text="4.0"
                     android:textColor="@color/darkBlue"

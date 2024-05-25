@@ -54,7 +54,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         getLastLocation();
 
         addBtn.setOnClickListener(v->{
-            Intent intent = new Intent(requireActivity(), AddActivity.class);
+            Intent intent = new Intent(requireActivity(), com.example.horizonapp.AddActivity.class);
             startActivity(intent);
         });
         mapSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -149,11 +149,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         LatLng historyMuseum = new LatLng(40.1743,44.5035);
         LatLng hovhannesTumanyanMuseum = new LatLng(40.1878, 44.5099);
         LatLng matenadaran = new LatLng(40.19207, 44.52113);
+        LatLng militaryMuseum = new LatLng(40.191703, 44.518317);
+        LatLng garni = new LatLng(40.112130, 44.735229);
+        LatLng dilijan_museum = new LatLng(40.741865, 44.857195);
+
 
         //Fortress
         LatLng amberd = new LatLng(40.3887,44.2260);
         LatLng smbataBerd = new LatLng(	39.871736, 45.338113);
         LatLng bagaberd = new LatLng(40.19207, 44.52113);
+        LatLng loruberd = new LatLng(41.167222, 44.260278);
+        LatLng tavushberd = new LatLng(41.006501, 45.015064);
 
 
         googleMap.addMarker(new MarkerOptions().position(haghartsinMonastery).title("Haghartsin Monastery").icon(customMarkerIcon));
@@ -161,15 +167,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         googleMap.addMarker(new MarkerOptions().position( goshavank).title(" Goshavank Monastery ").icon(customMarkerIcon));
         googleMap.addMarker(new MarkerOptions().position( makaravank).title(" Makaravank Monastery Complex ").icon(customMarkerIcon));
 
-        googleMap.addMarker(new MarkerOptions().position( historyMuseum).title("History Museum").icon(customMarkerIcon2));
+        googleMap.addMarker(new MarkerOptions().position( historyMuseum).title("Republic Square").icon(customMarkerIcon2));
         googleMap.addMarker(new MarkerOptions().position( hovhannesTumanyanMuseum).title("Hovhannes Tumanyan Museum").icon(customMarkerIcon2));
-        googleMap.addMarker(new MarkerOptions().position( matenadaran).title("Mesrop Mashtots Matenadara ").icon(customMarkerIcon2));
+        googleMap.addMarker(new MarkerOptions().position( matenadaran).title("Mesrop Mashtots Matenadaran ").icon(customMarkerIcon2));
+        googleMap.addMarker(new MarkerOptions().position( militaryMuseum).title("Military Museum").icon(customMarkerIcon2));
+        googleMap.addMarker(new MarkerOptions().position( garni).title("Garni Historical and Cultural Museum").icon(customMarkerIcon2));
+        googleMap.addMarker(new MarkerOptions().position(dilijan_museum).title("Local Lore Museum and Art Gallery ").icon(customMarkerIcon2));
+
 
         googleMap.addMarker(new MarkerOptions().position(amberd).title("Amberd fortress ").icon(customMarkerIcon3));
         googleMap.addMarker(new MarkerOptions().position(smbataBerd).title("Smbataberd Fortress ").icon(customMarkerIcon3));
+        googleMap.addMarker(new MarkerOptions().position(loruberd).title("Lori Fortress ").icon(customMarkerIcon3));
+        googleMap.addMarker(new MarkerOptions().position(tavushberd).title("Tavush fortress ").icon(customMarkerIcon3));
 
 
-        GeoPointsManager geoPointsManager = new GeoPointsManager(requireContext(), googleMap);
+
+        com.example.horizonapp.GeoPointsManager geoPointsManager = new com.example.horizonapp.GeoPointsManager(requireContext(), googleMap);
         geoPointsManager.addMarkersForGeoPoints();
     }
 

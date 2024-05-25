@@ -55,7 +55,7 @@ public class AddMarkerActivity extends AppCompatActivity implements OnMapReadyCa
 
                 String addressDetails = getAddressFromLocation(latLng.latitude, latLng.longitude);
                 if (addressDetails != null) {
-                    Log.d(TAG, "Selected location's address: " + addressDetails);
+                    Log.d(TAG, "Selected location's   address: " + addressDetails);
 
                     // Use a handler to switch back to the main thread
                     new Handler(Looper.getMainLooper()).post(() -> {

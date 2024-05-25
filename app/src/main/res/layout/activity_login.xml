@@ -34,23 +34,24 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/log_in"
+        android:fontFamily="sans-serif-medium"
+        android:text="Use the following details to login to the Guest mode\n\nGmail: sictst1@gmail.com\nPassword: Samsung2023"
         android:textAlignment="center"
         android:textColor="@color/blue"
-        android:textSize="19sp"
-        android:textStyle="bold"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:ignore="MissingConstraints" />
 
     <EditText
 
         android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="340dp"
         android:backgroundTint="@color/blue"
         android:hint="@string/enter_your_email"
         android:textColorHint="@color/blue"
@@ -100,7 +101,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don’t have an account? Sign Up"
+        android:text="Don’t have an account? Sign In"
         android:onClick="register"
         android:textAlignment="center"
         android:textColor="@color/blue"

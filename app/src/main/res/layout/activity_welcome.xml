@@ -84,20 +84,5 @@
         app:layout_constraintTop_toBottomOf="@+id/register_button"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
-        android:id="@+id/guest"
-        android:layout_width="129dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="28dp"
-        android:background="@drawable/guest_bg"
-        android:onClick="guest"
-        android:text="Guest"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
-        app:layout_constraintVertical_bias="0.148" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
