@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.example.horizonapp.R;
 import com.example.horizonapp.domain.PopularDomain;
+import com.example.horizonapp.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     private ArrayList<PopularDomain.Domain> items;
     private Context context;
 
-    public PopularAdapter(ArrayList<PopularDomain.Domain> items) {
+    public PopularAdapter(ArrayList<PopularDomain.Domain> items, HomeFragment homeFragment) {
         this.items = items;
     }
 

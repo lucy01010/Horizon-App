@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
+    android:layout_width="220dp"
     android:layout_height="200dp"
     android:layout_margin="8dp"
     android:background="@drawable/white_background"
@@ -11,18 +11,17 @@
 
     <ImageView
         android:id="@+id/pic"
-        android:layout_width="178dp"
-        android:layout_height="130dp"
+        android:layout_width="188dp"
+        android:layout_height="132dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/historymuseum"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.258" />
+        app:layout_constraintVertical_bias="0.266" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="31dp"
@@ -51,7 +50,7 @@
         android:id="@+id/titleTxt"
         android:layout_width="150dp"
         android:layout_height="20dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="2dp"
         android:text="History Museum"
         android:textColor="@color/black"
@@ -61,8 +60,8 @@
 
     <TextView
         android:id="@+id/locTxt"
-        android:layout_width="153dp"
-        android:layout_height="23dp"
+        android:layout_width="177dp"
+        android:layout_height="22dp"
         android:text="Yerevan"
         android:textColor="@color/darkBlue"
         android:textSize="10sp"
@@ -73,7 +72,7 @@
         android:id="@+id/imageView6"
         android:layout_width="17dp"
         android:layout_height="16dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="16dp"
         android:src="@drawable/grey_location_on_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTxt"
