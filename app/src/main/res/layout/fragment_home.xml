@@ -38,10 +38,11 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/savedButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_width="57dp"
+                    android:layout_height="41dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginStart="45dp"
+                    android:layout_marginTop="20dp"
                     android:src="@drawable/baseline_favorite_24_red"
 
 

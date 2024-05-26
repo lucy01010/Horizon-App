@@ -130,7 +130,7 @@ public class HomeFragment extends Fragment implements TopPlacesAdapter.OnItemCli
                             }
                             Log.d(TAG, "Popular places fetched: " + listOfPlaces.size());
                             requireActivity().runOnUiThread(() -> {
-                                popularAdapter = new PopularAdapter(listOfPlaces);
+                                popularAdapter = new PopularAdapter(listOfPlaces, this); // Pass the fragment as listener
                                 placesRecyclerView.setAdapter(popularAdapter);
                                 popularAdapter.notifyDataSetChanged();
                             });
@@ -197,6 +197,7 @@ public class HomeFragment extends Fragment implements TopPlacesAdapter.OnItemCli
         }
         updateSavedPlaces();
     }
+
 
     private void updateSavedPlaces() {
         Log.d(TAG, "updateSavedPlaces called");

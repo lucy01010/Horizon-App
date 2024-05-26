@@ -1,5 +1,8 @@
 package com.example.horizonapp.activities;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -79,7 +82,7 @@ public final class DetailActivity extends AppCompatActivity {
     }
 
     private void loadSavedPlaces() {
-        db.collection("users").document(currentUser.getUid()).get().addOnSuccessListener(documentSnapshot -> {
+        db.collection( "users").document(currentUser.getUid()).get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists() && documentSnapshot.contains("saved")) {
                 savedPlaces = (List<String>) documentSnapshot.get("saved");
                 // Check if the current place is already saved
