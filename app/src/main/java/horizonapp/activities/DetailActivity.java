@@ -22,6 +22,7 @@ public final class DetailActivity extends AppCompatActivity {
     private ActivityDetailBinding binding;
     private boolean isFavorite = false;
     private TopPlaceDomain topPlace;
+    private String title, picUrl, loc;
     private FirebaseFirestore db;
     private FirebaseUser currentUser;
     private List<String> savedPlaces;
@@ -38,8 +39,12 @@ public final class DetailActivity extends AppCompatActivity {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         savedPlaces = new ArrayList<>();
 
-        topPlace = (TopPlaceDomain) getIntent().getSerializableExtra("top_place_item");
+        // Receive TopPlaceDomain object from intent
+        title = getIntent().getStringExtra("Title");
+        picUrl = getIntent().getStringExtra("Pic");
+        loc = getIntent().getStringExtra("Loc");
 
+        // Proceed with topPlace
         getBundles();
 
         // Load saved places for current user
@@ -59,8 +64,10 @@ public final class DetailActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener(v -> finish());
     }
 
+
+
     private void getBundles() {
-        String picUrl = topPlace.getPicUrl();
+//        String picUrl = topPlace.getPicUrl();
         if (picUrl != null && (picUrl.startsWith("http://") || picUrl.startsWith("https://"))) {
             // Load image from URL
             Glide.with(this)
@@ -74,16 +81,17 @@ public final class DetailActivity extends AppCompatActivity {
                     .into(binding.PlacePic);
         }
 
-        binding.titleTxt.setText(topPlace.getTitle());
-        binding.LocationTxt.setText(topPlace.getLocation());
+        binding.titleTxt.setText(title);
+        binding.LocationTxt.setText(loc);
     }
+
 
     private void loadSavedPlaces() {
         db.collection("users").document(currentUser.getUid()).get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists() && documentSnapshot.contains("saved")) {
                 savedPlaces = (List<String>) documentSnapshot.get("saved");
                 // Check if the current place is already saved
-                if (savedPlaces != null && savedPlaces.contains(topPlace.getTitle())) {
+                if (savedPlaces != null && savedPlaces.contains(title)) {
                     isFavorite = true;
                     updateFavoriteStatus();
                 }

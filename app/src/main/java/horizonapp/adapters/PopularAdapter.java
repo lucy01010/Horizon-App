@@ -1,6 +1,7 @@
 package com.example.horizonapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,23 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.locTxt.setText(currentItem.getDomainLocation());
 
         int drawableResourceId = context.getResources().getIdentifier(currentItem.getDomainPicUrl(), "drawable", context.getPackageName());
+
+        holder.pic.setOnClickListener(v -> {
+            Intent intent = new Intent(context, com.example.horizonapp.activities.DetailActivity.class);
+            intent.putExtra("Pic", currentItem.getDomainPicUrl());
+            intent.putExtra("Title", currentItem.getDomainTitle());
+            intent.putExtra("Loc", currentItem.getDomainLocation());
+            context.startActivity(intent);
+        });
+
+        holder.titleTxt.setOnClickListener(v -> {
+            Intent intent = new Intent(context, com.example.horizonapp.activities.DetailActivity.class);
+            intent.putExtra("Pic", currentItem.getDomainPicUrl());
+            intent.putExtra("Title", currentItem.getDomainTitle());
+            intent.putExtra("Loc", currentItem.getDomainLocation());
+            context.startActivity(intent);
+        });
+
 
         Glide.with(context)
                 .load(currentItem.getDomainPicUrl())

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.horizonapp.R;
 
+
 public class FavoriteFragment extends Fragment {
 
 

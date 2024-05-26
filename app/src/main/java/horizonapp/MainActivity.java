@@ -1,7 +1,6 @@
 package com.example.horizonapp;
 
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;

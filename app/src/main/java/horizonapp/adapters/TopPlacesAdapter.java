@@ -1,6 +1,7 @@
 package com.example.horizonapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,7 @@ public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.View
             holder.favoriteIcon.setSelected(currentItem.isFavorite());
         });
     }
+
 
     @Override
     public int getItemCount() {
